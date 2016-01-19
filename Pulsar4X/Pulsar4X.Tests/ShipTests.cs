@@ -1587,6 +1587,7 @@ namespace Pulsar4X.Tests
         }
 
         [Test]
+        [Ignore("Not Implemented, will never fail or succeed")]
         public void SimulationTest()
         {
             /// <summary>
