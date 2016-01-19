@@ -81,17 +81,17 @@ namespace Pulsar4X.Tests
         [Test]
         public void Save_GameState_To_JSON()
         {
-            var s = new Store("TestGameFile", _saveFolder);
+            var s = new Store(SAVE_GAME_FILE_NAME, _saveFolder);
             s.SaveGame(_gameState);
         }
 
         [Test]
         public void Load_GameState_From_JSON()
         {
-            var s = new Store("TestGameFile", _saveFolder);
+            var s = new Store(SAVE_GAME_FILE_NAME, _saveFolder);
             s.SaveGame(_gameState);
 
-            var gs = s.LoadGame(Path.Combine(_saveFolder, "TestGameFile"));
+            var gs = s.LoadGame(Path.Combine(_saveFolder, SAVE_GAME_FILE_NAME));
 
             Assert.IsNotNull(gs);
         }
@@ -106,5 +106,21 @@ namespace Pulsar4X.Tests
             Assert.IsNotNull(nt);
             Assert.IsNotEmpty(nt);
         }
+        /// <summary>
+        /// Removes the savefile, if it exits
+        /// </summary>
+        [TearDown]
+
+        public void CleanUp() 
+        {
+            string path = Path.Combine(_saveFolder, SAVE_GAME_FILE_NAME);
+            if (File.Exists(path))
+            {
+                File.Delete(path); 
+            }
+            
+            
+        }
+
     }
 }
